@@ -1,0 +1,6 @@
+[console_scripts]
+compute = compute.main:main
+demo_countries = demo_countries.main:main
+demo_country = demo_country.main:main
+pre_compute_weights = pre_compute_weights.main:main
+

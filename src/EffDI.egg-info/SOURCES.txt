@@ -1,0 +1,11 @@
+setup.cfg
+setup.py
+src/EffDI.egg-info/PKG-INFO
+src/EffDI.egg-info/SOURCES.txt
+src/EffDI.egg-info/dependency_links.txt
+src/EffDI.egg-info/entry_points.txt
+src/EffDI.egg-info/requires.txt
+src/EffDI.egg-info/top_level.txt
+src/pre_compute_weights/__init__.py
+src/pre_compute_weights/__main__.py
+src/pre_compute_weights/main.py

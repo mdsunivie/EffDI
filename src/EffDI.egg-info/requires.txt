@@ -1,0 +1,8 @@
+numpy
+matplotlib
+pandas
+
+[full]
+sphinx
+sphinx-rtd-theme
+pytest

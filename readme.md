@@ -40,7 +40,9 @@ In the second step, these results are visualized and stored in the plots/ folder
 
 In the example of COVID-19 reported cases based on the file
 [time_series_covid19_confirmed_global.csv](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv), 
-using default parameters EffDI for any country in this data file may be computed.
+using default parameters, EffDI for any country in this data file may be computed. 
+Please download and store this at the location, from where EffDI called. Otherwise parse the location to the respective function calls.
+The following commands serve as an example of how to use EffDI.
 
 
 Pre-compute the inverse and forward weights by 

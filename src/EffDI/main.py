@@ -98,14 +98,14 @@ def main():
         nargs=2,
         type=lambda s: np.datetime64(datetime.strptime(s, "%Y-%m-%d")),
         help="date range of time series",
-        default=[np.datetime64("2020-05-27"), np.datetime64("2020-06-17")],
+        default=None,
     )
     parser.add_argument(
         "--high_incid_dates",
         nargs=2,
         type=lambda s: np.datetime64(datetime.strptime(s, "%Y-%m-%d")),
         help="date range of time series",
-        default=[np.datetime64("2021-01-26"), np.datetime64("2021-02-16")],
+        default=None,
     )
     #addtional arguments for demo_countries
     parser.add_argument(

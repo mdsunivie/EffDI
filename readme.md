@@ -52,7 +52,7 @@ effdi pre_compute_weights
 Compute results for EffDI for a selection of countries by
 
 ```bash
-effdi compute --countries "Austria" "Italy" "Korea, South" "Italy" "Germany" "Switzerland"
+effdi compute --countries "Austria" "Italy" "Korea, South"
 ```
 
 Create a detailed plot for any of the countries, where you computed results for, by

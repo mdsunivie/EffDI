@@ -46,22 +46,22 @@ using default parameters EffDI for any country in this data file may be computed
 Pre-compute the inverse and forward weights by 
 
 ```bash
-pre_compute_weights
+EffDI pre_compute_weights
 ```
 
 Compute results for EffDI for a selection of countries by
 
 ```bash
-compute --countries "Singapore" "United Kingdom" "Korea, South" "Italy" "Germany" "Switzerland"
+EffDI compute --countries "Singapore" "United Kingdom" "Korea, South" "Italy" "Germany" "Switzerland"
 ```
 
 Create a detailed plot for any of the countries, where you computed results for, by
 ```bash 
-demo_country --country "Austria"
+EffDI demo_country --country "Austria"
 ```
 
 Create a plot comparing a selection of countries, where you computed results for, by
 
 ```bash
-demo_countries --countries "Singapore" "United Kingdom" "Korea, South" "Italy" "Germany" "Switzerland"
+EffDI demo_countries --countries "Singapore" "United Kingdom" "Korea, South" "Italy" "Germany" "Switzerland"
 ```

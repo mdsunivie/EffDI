@@ -65,5 +65,5 @@ effdi demo_country --country "Austria"
 Create a plot comparing a selection of countries, where you computed results for, by
 
 ```bash
-effdi demo_countries --countries "Singapore" "United Kingdom" "Korea, South" "Italy" "Germany" "Switzerland"
+effdi demo_countries --countries "Austria" "Italy" "Korea, South"
 ```

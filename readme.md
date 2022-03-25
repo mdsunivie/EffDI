@@ -9,8 +9,8 @@ Python package to compute the effective dispersion index (EffDI).
 
 G. Schneckenreither, L. Herrmann, R. Reisenhofer, N. Popper, P. Grohs <br /> 
 Assessing the heterogeneity in the transmission of infectious diseases from time series of epidemiological data <br />
-Arxiv 2022 <br />
-[DOI](https://doi.org/???)
+Medrxiv 2022 <br />
+[DOI](https://doi.org/10.1101/2022.02.21.22271241)
 
 
 

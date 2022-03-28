@@ -7,11 +7,11 @@ from EffDI.pre_compute_weights import *
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("function_call",
-                        choices=["pre_compute_weights", "compute", "demo_country",
-                                 "demo_countries"])
+    subparsers = parser.add_subparsers(dest="command")
+    parser_pcw = subparsers.add_parser("pre_compute_weights")
+
     #arguments for pre_compute_weights
-    parser.add_argument(
+    parser_pcw.add_argument(
         "--fwd-distribution",
         type=str,
         choices=["gamma", "skewnorm", "delta"],
@@ -19,7 +19,7 @@ def main():
         default="delta",
         metavar="fwd_distribution",
     )
-    parser.add_argument(
+    parser_pcw.add_argument(
         "--inv-distribution",
         type=str,
         choices=["gamma", "skewnorm", "delta"],
@@ -28,87 +28,106 @@ def main():
         metavar="inv_distribution",
     )
     #arguments for compute
-    parser.add_argument(
+    parser_c = subparsers.add_parser("compute")
+    parser_c.add_argument(
         "--countries", nargs="*", type=str, help="countries", default=["Austria"]
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--data_file",
         nargs=1,
         type=str,
         help=".csv file with daily incidence time series",
         default="time_series_covid19_confirmed_global.csv",
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--inv_weights",
         type=str,
         help="cvs file with inverse weights",
         default="inv_weights.csv",
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--fwd_weights",
         type=str,
         help="cvs file with forward weights",
         default="fwd_weights.csv",
     )
-
-    parser.add_argument(
+    parser_c.add_argument(
         "--mode",
         type=str,
         help="only trend part of seasonal trend model",
         choices=["c", "t", "st"],
         default="st",
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--tau", nargs=2, type=int, help="tau1 and tau2", default=[6, 7]
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--k_range",
         nargs=2,
         type=int,
         help="range of parameter k (logarithmic scale, base 10)",
         default=[np.log10(0.1), 4],
     )
-    parser.add_argument(
+    parser_c.add_argument(
         "--k_samp", type=int, help="samples of k in logarithmic scale", default=300
     )
-    parser.add_argument("--n", type=int, help="number of sample for model", default=500)
-    parser.add_argument(
+    parser_c.add_argument("--n", type=int, help="number of sample for model", default=500)
+    parser_c.add_argument(
         "--distribution",
         type=str,
         choices=["gamma", "NB"],
         help="distribution used to model secondary infections",
         default="gamma",
     )
-    #additional arguments for demo_country
-    parser.add_argument(
+    #arguments for demo_country
+    parser_dc = subparsers.add_parser("demo_country")
+    parser_dc.add_argument(
         "--country",
         type=str,
         help="Country, for which stochasticity is visualized",
         default=["Austria"],
     )
-    parser.add_argument(
+    parser_dc.add_argument(
         "--dates",
         nargs=2,
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         help="date range of time series",
         default=None,
     )
-    parser.add_argument(
+    parser_dc.add_argument(
         "--low_incid_dates",
         nargs=2,
         type=lambda s: np.datetime64(datetime.strptime(s, "%Y-%m-%d")),
         help="date range of time series",
         default=None,
     )
-    parser.add_argument(
+    parser_dc.add_argument(
         "--high_incid_dates",
         nargs=2,
         type=lambda s: np.datetime64(datetime.strptime(s, "%Y-%m-%d")),
         help="date range of time series",
         default=None,
     )
-    #addtional arguments for demo_countries
-    parser.add_argument(
+    parser_dc.add_argument(
+        "--mode",
+        type=str,
+        help="only trend part of seasonal trend model",
+        choices=["c", "t", "st"],
+        default="st",
+    )
+    #arguments for demo_countries
+    parser_dcs = subparsers.add_parser("demo_countries")
+    parser_dcs.add_argument(
+        "--countries", nargs="*", type=str, help="countries", default=["Austria"]
+    )
+    parser_dcs.add_argument(
+        "--dates",
+        nargs=2,
+        type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+        help="date range of time series",
+        default=None,
+    )
+    parser_dcs.add_argument(
         "--modes",
         nargs="*",
         type=str,
@@ -116,10 +135,10 @@ def main():
         choices=["c", "t", "st"],
         default=["st"],
     )
-    parser.add_argument(
+    parser_dcs.add_argument(
         "--name", type=str, help="name of calculation", default="demo_other_countries"
     )
-    parser.add_argument(
+    parser_dcs.add_argument(
         "--markdates",
         type=str,
         nargs="*",
@@ -129,11 +148,11 @@ def main():
 
     args = parser.parse_args()
 
-    if args.function_call == "pre_compute_weights":
+    if args.command == "pre_compute_weights":
         pre_compute_weights(fwd_distribution=args.fwd_distribution,
                             inv_distribution=args.inv_distribution)
 
-    if args.function_call == "compute":
+    if args.command == "compute":
         compute(data_file=args.data_file,
                 inv_weights=args.inv_weights,
                 fwd_weights=args.fwd_weights,
@@ -145,14 +164,14 @@ def main():
                 n=args.n,
                 distribution=args.distribution)
 
-    if args.function_call == "demo_country":
+    if args.command == "demo_country":
         demo_country(country_arg=args.country,
                      dates=args.dates,
                      low_incid_dates=args.low_incid_dates,
                      high_incid_dates=args.high_incid_dates,
                      mode=args.mode)
 
-    if args.function_call == "demo_countries":
+    if args.command == "demo_countries":
         demo_countries(countries=args.countries,
                        dates=args.dates,
                        modes=args.modes,

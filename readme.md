@@ -67,3 +67,7 @@ Create a plot comparing a selection of countries, where you computed results for
 ```bash
 effdi demo_countries --countries "Austria" "Italy" "Korea, South"
 ```
+# Contributions
+
+The EffDI Python package was developed by Lukas Herrmann, Rafael Reisenhofer and Günter Schneckenreither. If you have any questions, please contact [rafae.reisenhofer@uni-bremen.de](mailto:rafael.reisenhofer@uni-bremen.de).
+
